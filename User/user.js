@@ -3,7 +3,7 @@ import { collection, db, getDocs } from '../DB/db.js';
 async function loadData() {
     try {
         const tableBody = document.getElementById('table-body');
-        const querySnapshot = await getDocs(collection(db, 'rows'));
+        const querySnapshot = await getDocs(query(collection(db, 'rows'), orderBy('now')));
 
         querySnapshot.forEach((doc) => {
             const data = doc.data();
