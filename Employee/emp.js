@@ -1,4 +1,4 @@
-import { collection, db, getDocs, updateDoc, doc } from '../DB/db.js';
+import { collection, db, getDocs, updateDoc, doc, query, orderBy } from '../DB/db.js';
 
 async function loadData() {
     try {
@@ -52,6 +52,7 @@ async function loadData() {
             tableBody.appendChild(newRow);
         });
     } catch (e) {
+        console.log("here");
         showAlert(e, 'danger');
     }
 }

@@ -1,4 +1,4 @@
-import { collection, db, getDocs } from '../DB/db.js';
+import { collection, db, getDocs, query, orderBy } from '../DB/db.js';
 
 async function loadData() {
     try {
