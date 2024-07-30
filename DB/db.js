@@ -3,7 +3,7 @@ import {
     initializeApp 
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { 
-    getFirestore, collection, addDoc, getDocs, getDoc, doc, setDoc, deleteDoc, updateDoc
+    getFirestore, collection, addDoc, getDocs, getDoc, doc, setDoc, deleteDoc, updateDoc, orderBy, query
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import { 
     getDatabase, set, push, onValue, update, ref
@@ -27,5 +27,5 @@ const database = getDatabase(app);
 export {
     app, db, update, getDoc, deleteDoc,
     database, set, push, onValue, collection, 
-    addDoc, getDocs, setDoc, doc, updateDoc
+    addDoc, getDocs, setDoc, doc, updateDoc, orderBy, query
 };

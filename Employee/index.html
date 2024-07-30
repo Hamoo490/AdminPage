@@ -4,37 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
+    <title>Employee</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        table, th, td {
+        table,
+        th,
+        td {
             text-align: center;
         }
+
         .action-buttons {
             display: flex;
             justify-content: center;
             gap: 5px;
             border: none;
         }
-        
+
         .btn-save {
             background-color: #28a745;
             color: white;
         }
+
         .btn-save:hover {
             background-color: #218838;
             color: white;
         }
 
-        .cell{
+        .cell {
             width: 50px;
         }
 
         .table-wrapper {
-            overflow-x: auto; /* Add horizontal scrolling */
-            margin-right: 20px; /* Add margin to the right */
+            overflow-x: auto;
+            /* Add horizontal scrolling */
+            margin-right: 20px;
+            /* Add margin to the right */
         }
-        
     </style>
 </head>
 
@@ -43,7 +48,7 @@
         <div class="col-12">
             <div id="alert-container"></div>
         </div>
-        <h2>Manage Laboratory</h2>
+        <h2>Manage Sells</h2>
         <table class="table table-bordered mt-3 mr-5">
             <thead>
                 <tr>
@@ -95,7 +100,7 @@
                             <th>المتبقي</th>
                             <th>المباع</th>
                             <th>الإيداع</th>
-                            <th>المتبقي</th> 
+                            <th>المتبقي</th>
                             <th colspan="3">DD/MM/YYYY</th>
                         </tr>
                     </thead>
@@ -104,9 +109,8 @@
             <tbody id="table-body">
             </tbody>
         </table>
-        <button class="btn btn-primary" id="addRow">Add Row</button>
     </div>
-    <script src="./home.js" type="module"></script>
+    <script src="./emp.js" type="module"></script>
 </body>
 
 </html>
