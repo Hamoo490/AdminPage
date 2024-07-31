@@ -1,0 +1,648 @@
+<html lang="en">
+
+<head>
+    <title>DawnMed Journal of Medical Science</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="title" content="Home">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://neomjournals.com">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Home">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="https://neomjournals.com/uploads/1/">
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="neomjournals.com">
+    <meta property="twitter:url" content="https://neomjournals.com">
+    <meta name="twitter:title" content="Home">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="https://neomjournals.com/uploads/1/">
+    <link rel="icon" type="image/x-icon" href="https://neomjournals.com/uploads/1/clogo.png">
+    <link rel="stylesheet" href="https://neomjournals.com/assets/cdns/neom_bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+    <script src="https://neomjournals.com/assets/cdns/neom_bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://neomjournals.com/assets/cdns/jquery.min.js"></script>
+    <script src="https://neomjournals.com/assets/js/front.js"></script>
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <style>
+        body {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .textcolor {
+            color: rgb(62 156 20) !important;
+        }
+
+        .btnhov {
+            border-color: rgb(62 156 20) !important;
+            color: rgb(62 156 20) !important;
+        }
+
+        .btnhov:hover {
+            background-color: rgb(62 156 20) !important;
+            color: #fff !important;
+        }
+
+        .anchorcolor {
+            color: #21365f !important;
+        }
+
+        .anchortextcolor.activebtn {
+            color: rgb(62 156 20) !important;
+        }
+
+        .activebtn {
+            border: 1px solid rgb(62 156 20);
+            border-radius: 13px;
+        }
+
+        .anchortextcolor.activebtn:hover {
+            color: rgb(62 156 20) !important;
+        }
+
+        .fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding-bottom: 12px !important;
+            z-index: 2;
+        }
+
+        .dropdown-item:active {
+            color: #ffff !important;
+            background-color: rgb(62 156 20) !important;
+        }
+
+        .vl {
+            border-left: 2px solid #e3e3e3;
+            height: 12px;
+        }
+
+        .searchinput input::placeholder,
+        .form-select option {
+            color: rgb(62 156 20) !important;
+        }
+
+        .hoverside {
+            cursor: pointer;
+            height: 94px;
+            width: 104px;
+            padding-top: 1rem;
+        }
+
+        .hoverside:hover {
+            background-color: rgb(248 249 250);
+        }
+
+        .headingtext {
+            font-size: 2rem;
+        }
+
+        .viewbtn {
+            padding: 0.2rem 1rem !important;
+        }
+
+        .searchbox {
+            position: absolute;
+            margin-top: -1.6rem;
+            margin-left: 6rem;
+        }
+
+
+        /* .texthover:hover{
+    text-decoration: underline!important;
+    color: rgb(62 156 20)!important;
+
+  } */
+
+
+        .owl-theme img {
+            width: 100%;
+            min-height: 200px;
+        }
+
+        /* Edited by Piyush on 08-sep-2023  (start)*/
+        .owl-carousel .owl-prev,
+        .owl-carousel .owl-next {
+            transform: translateY(-50%);
+            color: rgb(62 156 20) !important;
+            /* width:40px; */
+            text-align: center;
+        }
+
+        /* .owl-carousel .owl-prev:hover, .owl-carousel .owl-next:hover{
+  box-shadow:0px 0px 0px 0px #000;
+  background-color:rgb(62 156 20) !important;
+  color:#fff !important;}
+
+.owl-carousel .owl-prev{left:91%;}
+.owl-carousel .owl-next{right:-0.3%;}
+.owl-theme .owl-dots .owl-dot{display:none;} */
+
+        .owl-theme .owl-nav {
+            text-align: left !important;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .owl-theme .owl-nav [class*=owl-]:hover {
+            background: none !important;
+            text-decoration: none;
+        }
+
+
+        /* Style the previous button */
+        .owl-carousel .owl-prev {
+            position: absolute;
+            top: 40%;
+            left: -50px;
+            font-size: 7rem !important;
+            width: 50px;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        /* Style the next button */
+        .owl-carousel .owl-next {
+            position: absolute;
+            right: -50px;
+            top: 40%;
+            font-size: 7rem !important;
+            width: 50px;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        /*Edited by Piyush on 08-sep-2023 (End) */
+
+
+        /* Responsive design custom css */
+        @media only screen and (max-width:480px) {
+            .owl-theme .owl-dots .owl-dot {
+                display: none;
+            }
+
+            .owl-carousel .owl-prev,
+            .owl-carousel .owl-next {
+                width: 30px;
+                height: 30px;
+                font-size: 7rem !important;
+                top: 45%;
+            }
+
+            .owl-carousel .owl-prev {
+                left: 0px;
+            }
+
+            .owl-carousel .owl-next {
+                right: 0px;
+            }
+
+            .headingtext {
+                font-size: 1.3rem;
+            }
+
+            .viewbtn {
+                padding: 5px !important;
+                font-size: 0.7rem !important;
+            }
+
+            .searchbox {
+                margin-left: 8rem;
+            }
+
+        }
+
+
+        div .trun p {
+            display: -webkit-box;
+            -webkit-line-clamp: 6;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin: 0px;
+        }
+
+        .ellip p {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin: 0px 15px 9px 15px;
+        }
+    </style>
+
+    <style>
+        .truncate {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .ellips p {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin: 0px 15px 9px 15px;
+        }
+
+        .title {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin: 0px 15px 9px 15px;
+        }
+
+        .owl-stage {
+            display: flex;
+        }
+
+        .owl-item {
+            display: flex;
+            flex: 1 0 auto;
+        }
+
+        .cardimg img {
+            width: 100% !important
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- START HEADER -->
+    <!--START HEADER SECTION -->
+    <!--START TOP-HEADER SECTION -->
+    <div class="container-fluid">
+        <nav class="navbar">
+            <div class="container">
+                <div alt="" width="320" height="50"></div>
+                <div class="d-flex">
+                    <a class="btn btn-outline-success btnhov mx-4 px-4">Login</a>
+                    <a class="btn btn-outline-success btnhov">Register</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!--END TOP-HEADER SECTION -->
+    <div class="container">
+        <div class="container-fluid pt-5 pb-1 bg-body-tertiary">
+            <h3 class="pt-lg-4 text-center textcolor fw-bold">DawnMed Journal of Medical Science</h3>
+            <p class="text-center mt-3">E-ISSN: 0000-0000 P-ISSN: 0000-0000</p>
+        </div>
+    </div>
+    <!--START BOTTOM-HEADER SECTION -->
+    <div class="container">
+        <div class="sticky">
+            <!--START BOTTOM-HEADER NAVBAR-->
+            <nav class="navbar navbar-expand-lg bg-body-tertiary pb-lg-5" id="navdaat">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav mx-auto  mt-lg-0 mt-3">
+                    
+                            <li class="nav-item">
+                                <a class="px-lg-3 py-lg-1 px-3 py-1 anchortextcolor nav-link active textcolor navstyle mx-1 activebtn"
+                                    aria-current="page">Home</a>
+                            </li>
+                    
+                            <li class="nav-item">
+                                <a class="px-lg-3 py-lg-1 px-3 py-1 anchortextcolor nav-link active textcolor navstyle mx-1"
+                                    aria-current="page">Current Issue</a>
+                            </li>
+                    
+                            <li class="nav-item">
+                                <a class="px-lg-3 py-lg-1 px-3 py-1 anchortextcolor nav-link active textcolor navstyle mx-1"
+                                    aria-current="page">Archives</a>
+                            </li>
+                    
+                    
+                            <li class="nav-item">
+                                <a class="px-lg-3 py-lg-1 px-3 py-1 anchortextcolor nav-link active textcolor navstyle mx-1"
+                                    aria-current="page"> For Authors</a>
+                            </li>
+                    
+                            <li class="nav-item">
+                                <a class="px-lg-3 py-lg-1 px-3 py-1 anchortextcolor nav-link active textcolor navstyle mx-1"
+                                    aria-current="page">Reviewers</a>
+                            </li>
+                    
+                    
+                            <!--  <li class="nav-item">
+                                                        <a class="px-lg-3 py-lg-1 px-3 py-1 anchortextcolor nav-link active textcolor navstyle mx-1" aria-current="page" href="https://neomjournals.com/page?id=44">Submit Reasearch</a>
+                                                    </li> -->
+                    
+                            <li class="nav-item dropdown px-lg-3 py-lg-1 px-4 py-1">
+                                <a class="nav-link dropdown-toggle textcolor py-0" role="button"
+                                    data-bs-toggle="dropdown">About</a>
+                                <ul class="dropdown-menu">
+                    
+                                    <li><a class="dropdown-item textcolor px-lg-3 py-lg-1 px-3 py-1"
+                                            >About The Journal</a></li>
+                    
+                                    <li><a class="dropdown-item textcolor px-lg-3 py-lg-1 px-3 py-1"
+                                           >Aim &amp; Scope</a></li>
+                    
+                                    <li><a class="dropdown-item textcolor px-lg-3 py-lg-1 px-3 py-1"
+                                            >Editorial Board</a></li>
+                    
+                                    <li><a class="dropdown-item textcolor px-lg-3 py-lg-1 px-3 py-1"
+                                            >Journal Policies</a></li>
+                    
+                                    <li><a class="dropdown-item textcolor px-lg-3 py-lg-1 px-3 py-1"
+                                            >Contact</a></li>
+                    
+                                </ul>
+                            </li>
+                    
+                    
+                    
+                    
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!--START BOTTOM-HEADER NAVBAR-->
+    <!--START BOTTOM-HEADER SECTION -->
+    <!--END HEADER SECTION -->
+    <script>
+        var stickyOffset = $('.sticky').offset().top;
+        $(window).scroll(function () {
+            scroll = $(window).scrollTop();
+
+            if (scroll >= stickyOffset) {
+                $('.sticky').addClass('fixed');
+                $('#navdaat').removeClass('pb-lg-5');
+            }
+            else {
+                $('.sticky').removeClass('fixed')
+                $('#navdaat').addClass('pb-lg-5');
+            };
+        });
+    </script>
+
+    <script>
+        // NAVBAR button active
+        document.querySelectorAll(".nav-link").forEach((link) => {
+            if (link.href === window.location.href) {
+                link.classList.add("activebtn");
+                link.setAttribute("aria-current", "page");
+            }
+        });
+    </script>
+    <!-- END HEADER -->
+    <section>
+        <div class="container-fluid">
+            <div class="container">
+                <h2 class="textcolor fw-bold mt-lg-5 mt-5">About The Journal</h2>
+                <div class="row my-lg-5 my-5">
+                    <!-- START MIDDLE SECTION -->
+                    <div class="col-lg-8 col-sm-12">
+                        <div class="card h-100">
+                            <div class="cardimg card-body p-lg-5 pt-lg-0 pt-0">
+                                <p>
+                                    Comming Soon..&nbsp;
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- END MIDDLE SECTION -->
+                    <!-- START SIDE-MENU -->
+                    <div class="offset-lg-1 col-lg-3 col-sm-12">
+                        <div class="card h-100 border-0">
+                            <style>
+                                .Announce_ment div p {
+
+                                    font-weight: 600;
+                                    margin-bottom: 1px;
+
+                                }
+
+                                .announ_image {
+                                    width: 100% !important;
+                                }
+
+                                @media only screen and (max-width: 600px) {
+                                    .announ_image {
+                                        width: 50% !important;
+                                    }
+                                }
+                            </style>
+                            <!-- START LEFT-MENU -->
+
+                            <form id="sear_form" class="text-center border rounded py-3 px-3 mt-lg-0 mt-3" method="GET"
+                                action="https://neomjournals.com/searching?search={search}">
+                                <div>
+                                    <select class="form-select" name="select" id="selectid"
+                                        style="color: rgb(62 156 20);">
+                                        <option value="select" selected="">--Select--</option>
+                                        <option value="keywords">Keyword</option>
+                                        <option value="title">Title</option>
+                                        <option value="authors">Author</option>
+                                        <option value="publish_date">Publish Date</option>
+                                    </select>
+                                </div>
+                                <div class="searchinput">
+                                    <input class="form-control mt-lg-2 mb-lg-3 my-3" type="text" name="search"
+                                        id="searching" placeholder="Search Article" aria-label="Search">
+                                    <button class="btn btn-outline-success btn-sm btnhov" type="button"
+                                        onclick="validate();" style="cursor: pointer;">Search</button>
+
+
+
+                                </div>
+                                <div style="display:none"><label>Fill This Field</label><input type="text"
+                                        name="honeypot" value=""></div>
+                            </form>
+                            <div class="mt-4">
+                                <div class="card-header d-flex justify-content-between border-bottom-0">
+                                    <div>
+                                        <a href="/page?id=44 " class="textcolor text-decoration-none">Submit
+                                            Research</a>
+                                    </div>
+                                    <div>
+                                        <a href="/page?id=44 " class="textcolor text-decoration-none"><i
+                                                class="fa fa-plus-circle fs-5 textcolor" aria-hidden="true"
+                                                style="cursor: pointer;"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <h2 class="textcolor my-lg-4 my-4 fw-bold">Journal metrics</h2>
+                            <div class="border rounded ps-lg-2 px-lg-0 px-2">
+                                <p class="mt-lg-4" style="font-size:14px;"></p>
+                                <p>Current Acceptance Rate :&nbsp;22%</p>
+                                <p>Submission to a final decision :&nbsp;52 days</p>
+                                <p>Acceptance to publication &nbsp;:&nbsp;20 days</p>
+                                <p>CiteScore (2022) :&nbsp;2.</p>
+                                <p></p>
+                            </div>
+
+                            <!-- END LEFT-MENU -->
+
+                            <script>
+                                $('select').on('change', function () {
+                                    $getting = document.getElementById("selectid").value;
+                                    if ($getting == 'publish_date') {
+                                        document.getElementById("searching").setAttribute("type", "date");
+                                    }
+                                    else {
+                                        document.getElementById("searching").setAttribute("type", "text");
+                                    }
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <!-- END SIDE-MENU -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- START FOOTER -->
+    <!--TOP-FOOTER START-->
+    <footer>
+        <div class="containe-fluid  bg-body-tertiary pt-lg-5 py-lg-0 py-5">
+            <div class="container textcolor">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-12 ps-lg-5 ">
+                        <h5 class="mb-4">ABOUT THE JOURNAL</h5>
+                        <div alt="" width="319" height="50" class="mb-4"></div>
+
+                        <div style="text-align:justify">
+                            <div class="trun">
+                                <span class="ellip">
+                                    <p>
+                                        Comming Soon..&nbsp;
+                                    </p>
+
+                                </span>
+                            </div>
+                            <a href="/page?id=34" class="text-decoration-none textcolor texthover">Read more.</a>
+
+                        </div>
+                        <ul class="list-inline mt-3">
+                            <li class="list-inline-item">FOLLOW US</li>
+                            <li class="list-inline-item"><a><i
+                                        class="fa fa-twitter textcolor fs-4" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 offset-lg-2">
+                        <div class="mt-lg-0 mt-4">
+                            <h5 class="mb-4">DawnMed JOURNAL</h5>
+                            <li class="list-unstyled"><a class="text-decoration-none textcolor" href="">Home</a></li>
+                            <li class="list-unstyled"><a class="text-decoration-none textcolor"
+                                    href="/page?id=34">About</a></li>
+                            <li class="list-unstyled"><a class="text-decoration-none textcolor"
+                                    href="/page?id=35">Editorial Board</a></li>
+                            <li class="list-unstyled"><a class="text-decoration-none textcolor"
+                                    href="/page?id=100">Journal policies</a></li>
+                            <li class="list-unstyled"><a class="text-decoration-none textcolor"
+                                    href="/page?id=41">Contact</a></li>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <div class="mt-lg-0 mt-4">
+                            <h5 class="mb-4">IMPORTANT LINKS</h5>
+                            <li class="list-unstyled"><a class="text-decoration-none textcolor"
+                                    href="/page?id=36">Current Issue</a></li>
+                            <li class="list-unstyled"><a class="text-decoration-none textcolor"
+                                    href="/page?id=38">Archive</a></li>
+                            <li class="list-unstyled"><a class="text-decoration-none textcolor"
+                                    href="/page?id=40">Submit Menuscript</a></li>
+                            <li class="list-unstyled"><a class="text-decoration-none textcolor"
+                                    href="/page?id=39">Authors</a></li>
+                            <li class="list-unstyled"><a class="text-decoration-none textcolor"
+                                    href="/page?id=45">Reviewers</a></li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--TOP-FOOTER END-->
+    <!--BOTTOM-FOOTER START-->
+    <div class="footer-bottom pt-3" style="background-color: #9a9a9a; color:#e3e3e3;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-7 col-sm-12 px-lg-5">
+                    <div class="copyright">
+                        <p>Copyright © 2015 UBI Journal All rights reserved</p>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-5 col-sm-12">
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a class="text-decoration-none" style="color:#e3e3e3;" href="#">Terms &amp; Condition</a>
+                        </li>
+                        <li class="list-inline-item vl"></li>
+                        <li class="list-inline-item">
+                            <a class="text-decoration-none" style="color:#e3e3e3;" href="#">Privacy Policy</a>
+                        </li>
+                        <li class="list-inline-item vl"></li>
+                        <li class="list-inline-item">
+                            <a class="text-decoration-none" style="color:#e3e3e3;" href="#">Cookies Policy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--BOTTOM-FOOTER START-->
+    <!-- END FOOTER -->
+
+
+
+    <script>
+        $(".image-slider1").owlCarousel({
+            margin: 10,
+            //   loop:true,
+            autoplay: true,
+            nav: true,
+            navText: ["&#8249;", "&#8250;"],
+            responsive: {
+                0: {
+                    items: 1
+                },
+                400: {
+                    items: 2,
+                    merge: true,
+
+                },
+                800: {
+                    items: 3,
+                    merge: true,
+
+                },
+                1000: {
+                    items: 3
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
