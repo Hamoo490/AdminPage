@@ -1,55 +1,64 @@
-import { collection, db, getDocs, updateDoc, doc, query, orderBy } from '../DB/db.js';
+import { collection, db, getDocs, updateDoc, doc, query, orderBy, where } from '../DB/db.js';
+
+function getCurrentDateFormatted() {
+    const now = new Date();
+    const day = String(now.getDate());
+    const month = String(now.getMonth() + 1);
+    const year = now.getFullYear();
+    return `${day}/${month}/${year}`;
+}
 
 async function loadData() {
     try {
+        const currentDate = getCurrentDateFormatted();
         const tableBody = document.getElementById('table-body');
         const querySnapshot = await getDocs(query(collection(db, 'rows'), orderBy('now')));
-
         querySnapshot.forEach((doc) => {
             const data = doc.data();
             const newRow = document.createElement('tr');
             newRow.setAttribute('data-id', doc.id);
-
-            newRow.innerHTML = `
-            <td><input type="text" class="cell form-control" value="${data.idPart1 || ''}"></td>
-            <td><label class="cell form-control"></label></td>
-            <td><label class="cell form-control"></label></td>
-            <td><input type="text" class="cell form-control" value="${data.sadaPart1 || ''}"></td>
-            <td><label class="cell form-control"></label></td>
-            <td><label class="cell form-control"></label></td>
-            <td><input type="text" class="cell form-control" value="${data.boteekhPart1 || ''}"></td>
-            <td><label class="cell form-control"></label></td>
-            <td><label class="cell form-control"></label></td>
-            <td><input type="text" class="cell form-control" value="${data.alikaPart1 || ''}"></td>
-            <td><label class="cell form-control"></label></td>
-            <td><label class="cell form-control"></label></td>
-            <td><input type="text" class="cell form-control" value="${data.blueberryPart1 || ''}"></td>
-            <td><label class="cell form-control"></label></td>
-            <td><label class="cell form-control"></label></td>
-            <td><input type="text" class="cell form-control" value="${data.mintGrapesPart1 || ''}"></td>
-            <td><label class="cell form-control"></label></td>
-            <td><label class="cell form-control"></label></td>
-            <td><input type="text" class="cell form-control" value="${data.mintLemonPart1 || ''}"></td>
-            <td><label class="cell form-control"></label></td>
-            <td><label class="cell form-control"></label></td>
-            <td><input type="text" class="cell form-control" value="${data.berryGrapesPart1 || ''}"></td>
-            <td><label class="cell form-control"></label></td>
-            <td><label class="cell form-control"></label></td>
-            <td><input type="text" class="cell form-control" value="${data.mixPart1 || ''}"></td>
-            <td><label class="cell form-control"></label></td>
-            <td><label class="cell form-control"></label></td>
-            <td><input type="text" class="cell form-control" value="${data.palmPart1 || ''}"></td>
-            <td><label class="cell form-control"></label></td>
-            <td><label class="cell form-control"></label></td>
-            <td><input type="text" class="cell form-control" value="${data.premiumPart1 || ''}"></td>
-            <td><label class="cell form-control"></label></td>
-            <td><label class="cell form-control"></label></td>
-            <td colspan="3"><label class="form-control">${data.date}</label></td>
-            <td class="action-buttons">
-                    <button class="btn btn-save btn-sm" onclick="saveRow(this)">Save</button>
-            </td>
-        `;
-            tableBody.appendChild(newRow);
+            if (doc.data()['date'] === currentDate) {
+                newRow.innerHTML = `
+                <td><input type="text" class="cell form-control" value="${data.idPart1 || ''}"></td>
+                <td><label class="cell form-control"></label></td>
+                <td><label class="cell form-control"></label></td>
+                <td><input type="text" class="cell form-control" value="${data.sadaPart1 || ''}"></td>
+                <td><label class="cell form-control"></label></td>
+                <td><label class="cell form-control"></label></td>
+                <td><input type="text" class="cell form-control" value="${data.boteekhPart1 || ''}"></td>
+                <td><label class="cell form-control"></label></td>
+                <td><label class="cell form-control"></label></td>
+                <td><input type="text" class="cell form-control" value="${data.alikaPart1 || ''}"></td>
+                <td><label class="cell form-control"></label></td>
+                <td><label class="cell form-control"></label></td>
+                <td><input type="text" class="cell form-control" value="${data.blueberryPart1 || ''}"></td>
+                <td><label class="cell form-control"></label></td>
+                <td><label class="cell form-control"></label></td>
+                <td><input type="text" class="cell form-control" value="${data.mintGrapesPart1 || ''}"></td>
+                <td><label class="cell form-control"></label></td>
+                <td><label class="cell form-control"></label></td>
+                <td><input type="text" class="cell form-control" value="${data.mintLemonPart1 || ''}"></td>
+                <td><label class="cell form-control"></label></td>
+                <td><label class="cell form-control"></label></td>
+                <td><input type="text" class="cell form-control" value="${data.berryGrapesPart1 || ''}"></td>
+                <td><label class="cell form-control"></label></td>
+                <td><label class="cell form-control"></label></td>
+                <td><input type="text" class="cell form-control" value="${data.mixPart1 || ''}"></td>
+                <td><label class="cell form-control"></label></td>
+                <td><label class="cell form-control"></label></td>
+                <td><input type="text" class="cell form-control" value="${data.palmPart1 || ''}"></td>
+                <td><label class="cell form-control"></label></td>
+                <td><label class="cell form-control"></label></td>
+                <td><input type="text" class="cell form-control" value="${data.premiumPart1 || ''}"></td>
+                <td><label class="cell form-control"></label></td>
+                <td><label class="cell form-control"></label></td>
+                <td colspan="3"><label class="form-control">${data.date}</label></td>
+                <td class="action-buttons">
+                        <button class="btn btn-save btn-sm" onclick="saveRow(this)">Save</button>
+                </td>
+                `;
+                tableBody.appendChild(newRow);
+            }
         });
     } catch (e) {
         console.log("here");
