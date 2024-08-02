@@ -326,11 +326,12 @@ window.loadData = async function () {
                 const label = newRow.querySelector(`label[name="${prefix}3Label"]`);
 
                 if (input1 && input2 && label) {
-                    input1.addEventListener('input', () => calculateAndSetFieldValues(label, input1, input2, prefix));
-                    input2.addEventListener('input', () => calculateAndSetFieldValues(label, input1, input2, prefix));
+                    input1.addEventListener('input', () => updateRowValues(newRow, prefix));
+                    input2.addEventListener('input', () => updateRowValues(newRow, prefix));
 
                     // Calculate initial value
-                    calculateAndSetFieldValues(label, input1, input2, prefix);
+                    //calculateAndSetFieldValues(label, input1, input2, prefix);
+                    updateRowValues(newRow, prefix);
 
                     sumPart1[index] += Number(input1.value || 0);
                     sumPart2[index] += Number(input2.value || 0);
@@ -405,18 +406,54 @@ function showAlert(message, type) {
 
 function calculateAndSetFieldValues(output, input1, input2, prefix) {
     const tableBody = document.getElementById('table-body');
-    const lastRow = tableBody.querySelectorAll('tr')[tableBody.rows.length - 2];
+    const rows = Array.from(tableBody.querySelectorAll('tr'));
+    const rowIndex = rows.indexOf(output.closest('tr'));
+
     const value1 = parseFloat(input1.value) || 0;
     const value2 = parseFloat(input2.value) || 0;
-    let lastOutputValue = 0;
 
-    if (lastRow) {
-        const lastOutputElement = lastRow.querySelector(`label[name="${prefix}3Label"]`);
-        if (lastOutputElement) {
-            lastOutputValue = parseFloat(lastOutputElement.textContent) || 0;
+    let previousRowValue = 0;
+
+    if (rowIndex > 0) {
+        const previousRow = rows[rowIndex - 1];
+        const previousOutputElement = previousRow.querySelector(`label[name="${prefix}3Label"]`);
+        if (previousOutputElement) {
+            previousRowValue = parseFloat(previousOutputElement.textContent) || 0;
         }
     }
 
-    const newValue = lastOutputValue + (value1 - value2);
+    const newValue = previousRowValue + (value1 - value2);
     output.textContent = newValue;
+}
+
+function updateRowValues(row, prefix) {
+    const input1 = row.querySelector(`input[name="${prefix}1"]`);
+    const input2 = row.querySelector(`input[name="${prefix}2"]`);
+    const label = row.querySelector(`label[name="${prefix}3Label"]`);
+
+    if (input1 && input2 && label) {
+        // Recalculate the value for the current row
+        calculateAndSetFieldValues(label, input1, input2, prefix);
+
+        // Recalculate all subsequent rows
+        recalculateSubsequentRows(row, prefix);
+    }
+}
+
+function recalculateSubsequentRows(startRow, prefix) {
+    const tableBody = document.getElementById('table-body');
+    const rows = Array.from(tableBody.querySelectorAll('tr'));
+    const startIndex = rows.indexOf(startRow);
+
+    for (let i = startIndex + 1; i < rows.length; i++) {
+        const row = rows[i];
+        const input1 = row.querySelector(`input[name="${prefix}1"]`);
+        const input2 = row.querySelector(`input[name="${prefix}2"]`);
+        const label = row.querySelector(`label[name="${prefix}3Label"]`);
+
+        if (input1 && input2 && label) {
+            // Recalculate the value for each subsequent row
+            calculateAndSetFieldValues(label, input1, input2, prefix);
+        }
+    }
 }
