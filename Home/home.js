@@ -6,7 +6,6 @@ const day = currentDate.getDate();
 const month = currentDate.getMonth() + 1;
 const year = currentDate.getFullYear();
 let isExistRowUpdate = false;
-let sumPart1 = 0.0, sumPart2 = 0.0, sumPart3 = 0.0;
 
 function addRow() {
     
@@ -80,20 +79,6 @@ function addRow() {
             calculateAndSetFieldValues(output, input1, input2, prefix);
         }
     });
-    sumPart1 += Number(data.idPart1 || 0) + Number(data.sadaPart1 || 0) + Number(data.boteekhPart1 || 0) +
-        Number(data.alikaPart1 || 0) + Number(data.blueberryPart1 || 0) + Number(data.mintGrapesPart1 || 0) +
-        Number(data.mintLemonPart1 || 0) + Number(data.berryGrapesPart1 || 0) + Number(data.mixPart1 || 0) +
-        Number(data.palmPart1 || 0) + Number(data.premiumPart1 || 0);
-
-    sumPart2 += Number(data.idPart2 || 0) + Number(data.sadaPart2 || 0) + Number(data.boteekhPart2 || 0) +
-        Number(data.alikaPart2 || 0) + Number(data.blueberryPart2 || 0) + Number(data.mintGrapesPart2 || 0) +
-        Number(data.mintLemonPart2 || 0) + Number(data.berryGrapesPart2 || 0) + Number(data.mixPart2 || 0) +
-        Number(data.palmPart2 || 0) + Number(data.premiumPart2 || 0);
-
-    sumPart3 += Number(data.idPart3 || 0) + Number(data.sadaPart3 || 0) + Number(data.boteekhPart3 || 0) +
-        Number(data.alikaPart3 || 0) + Number(data.blueberryPart3 || 0) + Number(data.mintGrapesPart3 || 0) +
-        Number(data.mintLemonPart3 || 0) + Number(data.berryGrapesPart3 || 0) + Number(data.mixPart3 || 0) +
-        Number(data.palmPart3 || 0) + Number(data.premiumPart3 || 0);
 }
 
 document.getElementById("addRow").addEventListener('click', addRow);
@@ -104,7 +89,7 @@ window.saveRow = async function (button) {
     const inputs = row.querySelectorAll('input');
     const labels = row.querySelectorAll('label');
     
-    const data = {
+    const dataADD = {
         idPart1: inputs[0].value,
         idPart2: inputs[1].value,
         idPart3: labels[0].textContent,
@@ -138,18 +123,55 @@ window.saveRow = async function (button) {
         premiumPart1: inputs[20].value,
         premiumPart2: inputs[21].value,
         premiumPart3: labels[10].textContent,
-        date: selectedDate,
+        date: selectedDate ?? '',
         now: Date()
+    };
+
+    const dataEdit = {
+        idPart1: inputs[0].value,
+        idPart2: inputs[1].value,
+        idPart3: labels[0].textContent,
+        sadaPart1: inputs[2].value,
+        sadaPart2: inputs[3].value,
+        sadaPart3: labels[1].textContent,
+        boteekhPart1: inputs[4].value,
+        boteekhPart2: inputs[5].value,
+        boteekhPart3: labels[2].textContent,
+        alikaPart1: inputs[6].value,
+        alikaPart2: inputs[7].value,
+        alikaPart3: labels[3].textContent,
+        blueberryPart1: inputs[8].value,
+        blueberryPart2: inputs[9].value,
+        blueberryPart3: labels[4].textContent,
+        mintGrapesPart1: inputs[10].value,
+        mintGrapesPart2: inputs[11].value,
+        mintGrapesPart3: labels[5].textContent,
+        mintLemonPart1: inputs[12].value,
+        mintLemonPart2: inputs[13].value,
+        mintLemonPart3: labels[6].textContent,
+        berryGrapesPart1: inputs[14].value,
+        berryGrapesPart2: inputs[15].value,
+        berryGrapesPart3: labels[7].textContent,
+        mixPart1: inputs[16].value,
+        mixPart2: inputs[17].value,
+        mixPart3: labels[8].textContent,
+        palmPart1: inputs[18].value,
+        palmPart2: inputs[19].value,
+        palmPart3: labels[9].textContent,
+        premiumPart1: inputs[20].value,
+        premiumPart2: inputs[21].value,
+        premiumPart3: labels[10].textContent,
+        date: selectedDate ?? labels[11].textContent,
     };
 
     try {
         if (docId) {
             isExistRowUpdate = false;
-            await updateDoc(doc(db, 'rows', docId), data);
+            await updateDoc(doc(db, 'rows', docId), dataEdit);
             showAlert('Row Updated', 'success');
         } else {
             isExistRowUpdate = false;
-            await addDoc(collection(db, 'rows'), data);
+            await addDoc(collection(db, 'rows'), dataADD);
             showAlert('Row Added', 'success');
         }
     } catch (e) {
@@ -158,6 +180,59 @@ window.saveRow = async function (button) {
         updateSums();
     }
 };
+
+function updateSums() {
+    const tableBody = document.getElementById('table-body');
+    const rows = tableBody.querySelectorAll('tr');
+    const sumPart1 = Array(11).fill(0);
+    const sumPart2 = Array(11).fill(0);
+    const sumPart3 = Array(11).fill(0);
+
+    rows.forEach((row) => {
+        const inputs = row.querySelectorAll('input');
+        const labels = row.querySelectorAll('label');
+
+        const fieldPrefixes = [
+            'idPart', 'sadaPart', 'boteekhPart', 'alikaPart', 'blueberryPart',
+            'mintGrapesPart', 'mintLemonPart', 'berryGrapesPart', 'mixPart',
+            'palmPart', 'premiumPart'
+        ];
+
+        fieldPrefixes.forEach((prefix, index) => {
+            const input1 = row.querySelector(`input[name="${prefix}1"]`);
+            const input2 = row.querySelector(`input[name="${prefix}2"]`);
+            const label = row.querySelector(`label[name="${prefix}3Label"]`);
+
+            if (input1 && input2 && label) {
+                sumPart1[index] += Number(input1.value || 0);
+                sumPart2[index] += Number(input2.value || 0);
+                sumPart3[index] += Number(label.textContent || 0);
+            }
+        });
+    });
+
+    const fieldPrefixes = [
+        'idPart', 'sadaPart', 'boteekhPart', 'alikaPart', 'blueberryPart',
+        'mintGrapesPart', 'mintLemonPart', 'berryGrapesPart', 'mixPart',
+        'palmPart', 'premiumPart'
+    ];
+
+    fieldPrefixes.forEach((prefix, index) => {
+        const sumPart1Element = document.getElementById(`sumPart1_${prefix}`);
+        const sumPart2Element = document.getElementById(`sumPart2_${prefix}`);
+        const sumPart3Element = document.getElementById(`sumPart3_${prefix}`);
+
+        if (sumPart1Element) sumPart1Element.textContent = sumPart1[index];
+        if (sumPart2Element) sumPart2Element.textContent = sumPart2[index];
+        if (sumPart3Element) sumPart3Element.textContent = sumPart3[index];
+        if (prefix === 'palmPart') {
+            console.log(sumPart1[index]);
+            console.log(sumPart2[index]);
+            console.log(sumPart3[index]);
+        }
+        
+    });
+}
 
 window.deleteRow = async function (button) {
     const row = button.closest('tr');
@@ -174,6 +249,10 @@ window.deleteRow = async function (button) {
         }
     }
 };
+
+const sumPart1 = Array(11).fill(0);
+const sumPart2 = Array(11).fill(0);
+const sumPart3 = Array(11).fill(0);
 
 window.loadData = async function () {
     try {
@@ -241,7 +320,7 @@ window.loadData = async function () {
             ];
 
             // Attach event listeners to all relevant fields
-            fieldPrefixes.forEach(prefix => {
+            fieldPrefixes.forEach((prefix, index) => {
                 const input1 = newRow.querySelector(`input[name="${prefix}1"]`);
                 const input2 = newRow.querySelector(`input[name="${prefix}2"]`);
                 const label = newRow.querySelector(`label[name="${prefix}3Label"]`);
@@ -252,46 +331,29 @@ window.loadData = async function () {
 
                     // Calculate initial value
                     calculateAndSetFieldValues(label, input1, input2, prefix);
+
+                    sumPart1[index] += Number(input1.value || 0);
+                    sumPart2[index] += Number(input2.value || 0);
+                    sumPart3[index] += Number(label.textContent || 0);
                 } else {
                     console.warn(`Missing input or label fields for ${prefix}`);
                 }
             });
-            updateSums();
+            fieldPrefixes.forEach((prefix, index) => {
+                const sumPart1Element = document.getElementById(`sumPart1_${prefix}`);
+                const sumPart2Element = document.getElementById(`sumPart2_${prefix}`);
+                const sumPart3Element = document.getElementById(`sumPart3_${prefix}`);
+
+                if (sumPart1Element) sumPart1Element.textContent = sumPart1[index];
+                if (sumPart2Element) sumPart2Element.textContent = sumPart2[index];
+                if (sumPart3Element) sumPart3Element.textContent = sumPart3[index];
+            });
         });
     } catch (e) {
         showAlert(e, 'danger');
     }
 };
 
-function updateSums() {
-    const fieldPrefixes = [
-        'idPart', 'sadaPart', 'boteekhPart', 'alikaPart', 'blueberryPart',
-        'mintGrapesPart', 'mintLemonPart', 'berryGrapesPart', 'mixPart',
-        'palmPart', 'premiumPart'
-    ];
-
-    let sumPart1 = 0, sumPart2 = 0, sumPart3 = 0;
-
-    document.querySelectorAll('#table-body tr').forEach(row => {
-        fieldPrefixes.forEach(prefix => {
-            const input1 = row.querySelector(`input[name="${prefix}1"]`);
-            const input2 = row.querySelector(`input[name="${prefix}2"]`);
-            const label = row.querySelector(`label[name="${prefix}3Label"]`);
-
-            if (input1) sumPart1 += parseFloat(input1.value) || 0;
-            if (input2) sumPart2 += parseFloat(input2.value) || 0;
-            if (label) sumPart3 += parseFloat(label.textContent) || 0;
-        });
-    });
-
-    displaySums(sumPart1, sumPart2, sumPart3);
-}
-
-function displaySums(sumPart1, sumPart2, sumPart3) {
-    document.getElementById('sumPart1').textContent = sumPart1.toFixed(2);
-    document.getElementById('sumPart2').textContent = sumPart2.toFixed(2);
-    document.getElementById('sumPart3').textContent = sumPart3.toFixed(2);
-}
 
 window.showDatePicker = function (label) {
     isExistRowUpdate = true;
