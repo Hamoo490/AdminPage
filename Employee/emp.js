@@ -19,37 +19,37 @@ async function loadData() {
             newRow.setAttribute('data-id', doc.id);
             if (doc.data()['date'] === currentDate) {
                 newRow.innerHTML = `
-                <td><input type="text" class="cell form-control" value="${data.idPart1 || ''}"></td>
+                <td><input type="text" class="cell form-control" value="${data.idPart2 || ''}"></td>
                 <td><label class="cell form-control"></label></td>
                 <td><label class="cell form-control"></label></td>
-                <td><input type="text" class="cell form-control" value="${data.sadaPart1 || ''}"></td>
+                <td><input type="text" class="cell form-control" value="${data.sadaPart2 || ''}"></td>
                 <td><label class="cell form-control"></label></td>
                 <td><label class="cell form-control"></label></td>
-                <td><input type="text" class="cell form-control" value="${data.boteekhPart1 || ''}"></td>
+                <td><input type="text" class="cell form-control" value="${data.boteekhPart2 || ''}"></td>
                 <td><label class="cell form-control"></label></td>
                 <td><label class="cell form-control"></label></td>
-                <td><input type="text" class="cell form-control" value="${data.alikaPart1 || ''}"></td>
+                <td><input type="text" class="cell form-control" value="${data.alikaPart2 || ''}"></td>
                 <td><label class="cell form-control"></label></td>
                 <td><label class="cell form-control"></label></td>
-                <td><input type="text" class="cell form-control" value="${data.blueberryPart1 || ''}"></td>
+                <td><input type="text" class="cell form-control" value="${data.blueberryPart2 || ''}"></td>
                 <td><label class="cell form-control"></label></td>
                 <td><label class="cell form-control"></label></td>
-                <td><input type="text" class="cell form-control" value="${data.mintGrapesPart1 || ''}"></td>
+                <td><input type="text" class="cell form-control" value="${data.mintGrapesPart2 || ''}"></td>
                 <td><label class="cell form-control"></label></td>
                 <td><label class="cell form-control"></label></td>
-                <td><input type="text" class="cell form-control" value="${data.mintLemonPart1 || ''}"></td>
+                <td><input type="text" class="cell form-control" value="${data.mintLemonPart2 || ''}"></td>
                 <td><label class="cell form-control"></label></td>
                 <td><label class="cell form-control"></label></td>
-                <td><input type="text" class="cell form-control" value="${data.berryGrapesPart1 || ''}"></td>
+                <td><input type="text" class="cell form-control" value="${data.berryGrapesPart2 || ''}"></td>
                 <td><label class="cell form-control"></label></td>
                 <td><label class="cell form-control"></label></td>
-                <td><input type="text" class="cell form-control" value="${data.mixPart1 || ''}"></td>
+                <td><input type="text" class="cell form-control" value="${data.mixPart2 || ''}"></td>
                 <td><label class="cell form-control"></label></td>
                 <td><label class="cell form-control"></label></td>
-                <td><input type="text" class="cell form-control" value="${data.palmPart1 || ''}"></td>
+                <td><input type="text" class="cell form-control" value="${data.palmPart2 || ''}"></td>
                 <td><label class="cell form-control"></label></td>
                 <td><label class="cell form-control"></label></td>
-                <td><input type="text" class="cell form-control" value="${data.premiumPart1 || ''}"></td>
+                <td><input type="text" class="cell form-control" value="${data.premiumPart2 || ''}"></td>
                 <td><label class="cell form-control"></label></td>
                 <td><label class="cell form-control"></label></td>
                 <td colspan="3"><label class="form-control">${data.date}</label></td>
@@ -88,17 +88,17 @@ window.saveRow = async function (button) {
     const labels = row.querySelectorAll('label');
 
     const data = {
-        idPart1: inputs[0].value,
-        sadaPart1: inputs[1].value,
-        boteekhPart1: inputs[2].value,
-        alikaPart1: inputs[3].value,
-        blueberryPart1: inputs[4].value,
-        mintGrapesPart1: inputs[5].value,
-        mintLemonPart1: inputs[6].value,
-        berryGrapesPart1: inputs[7].value,
-        mixPart1: inputs[8].value,
-        palmPart1: inputs[9].value,
-        premiumPart1: inputs[10].value
+        idPart2: inputs[0].value,
+        sadaPart2: inputs[1].value,
+        boteekhPart2: inputs[2].value,
+        alikaPart2: inputs[3].value,
+        blueberryPart2: inputs[4].value,
+        mintGrapesPart2: inputs[5].value,
+        mintLemonPart2: inputs[6].value,
+        berryGrapesPart2: inputs[7].value,
+        mixPart2: inputs[8].value,
+        palmPart2: inputs[9].value,
+        premiumPart2: inputs[10].value
     };
 
     try {
