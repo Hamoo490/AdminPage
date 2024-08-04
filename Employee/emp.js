@@ -8,16 +8,66 @@ function getCurrentDateFormatted() {
     return `${day}/${month}/${year}`;
 }
 
+window.showDatePicker = function (label) {
+    // Find the date picker input within the same row
+    const datePicker = label.parentElement.querySelector('.date-picker');
+    if (datePicker) {
+        // Show the date picker input
+        datePicker.style.display = 'block';
+        datePicker.focus(); // Focus to open the date picker immediately
+    }
+}
+
+function formatDate(date) {
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+}
+
+var selectedDate;
+window.updateDate = function (dateInput) {
+    const date = new Date(dateInput.value);
+    console.log("date =>" + date);
+    console.log("in =>" + dateInput.value);
+    
+    selectedDate = formatDate(date);
+    console.log("Se =>" + selectedDate);
+    const label = document.getElementById('date');
+    if (label) {
+        label.textContent = selectedDate;
+        loadData();
+    }
+}
+
+function convertDateFormat(dateString) {
+    // Split the input date string by '/'
+    var parts = dateString.split('/');
+
+    // Extract month, day, and year
+    var month = parts[0].padStart(2, '0'); // Ensure two digits
+    var day = parts[1].padStart(2, '0');   // Ensure two digits
+    var year = parts[2];
+
+    // Construct the new date string in YYYY-MM-DD format
+    var newDateString = `${year}-${month}-${day}`;
+    return newDateString;
+}
+
+window.onload = async function () {
+    loadData();
+};
+
 async function loadData() {
     try {
-        const currentDate = getCurrentDateFormatted();
         const tableBody = document.getElementById('table-body');
+        document.getElementById('table-body').innerHTML = '';
         const querySnapshot = await getDocs(query(collection(db, 'rows'), orderBy('now')));
         querySnapshot.forEach((doc) => {
             const data = doc.data();
             const newRow = document.createElement('tr');
             newRow.setAttribute('data-id', doc.id);
-            if (doc.data()['date'] === currentDate) {
+            if (doc.data()['date'] === selectedDate) {
                 newRow.innerHTML = `
                 <td><input type="text" class="cell form-control" value="${data.idPart2 || ''}"></td>
                 <td><label class="cell form-control"></label></td>
@@ -66,7 +116,6 @@ async function loadData() {
     }
 }
 
-loadData();
 
 function showAlert(message, type) {
     const alertContainer = document.getElementById('alert-container');
