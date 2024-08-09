@@ -8,13 +8,13 @@ const year = currentDate.getFullYear();
 let isExistRowUpdate = false;
 
 function addRow() {
-    
-    if (isExistRowUpdate == true) { 
+
+    if (isExistRowUpdate == true) {
         showAlert("Save The Row Updated", 'danger');
         return;
     }
     const tableBody = document.getElementById('table-body');
-    const newRow = document.createElement('tr');   
+    const newRow = document.createElement('tr');
     newRow.innerHTML = `
         <td><input type="text" class="cell form-control" name="idPart1"></td>
         <td><input type="text" class="cell form-control part2Label" name="idPart2"></td>
@@ -88,7 +88,7 @@ window.saveRow = async function (button) {
     const docId = row.getAttribute('data-id');
     const inputs = row.querySelectorAll('input');
     const labels = row.querySelectorAll('label');
-    
+
     const dataADD = {
         idPart1: inputs[0].value,
         idPart2: inputs[1].value,
@@ -165,6 +165,7 @@ window.saveRow = async function (button) {
     };
 
     try {
+        console.log(docId);
         if (docId) {
             isExistRowUpdate = false;
             await updateDoc(doc(db, 'rows', docId), dataEdit);
@@ -176,8 +177,15 @@ window.saveRow = async function (button) {
         }
     } catch (e) {
         showAlert(e, 'danger');
-    } finally { 
-        updateSums();
+    } finally {
+        if (docId) {
+            console.log("Update");
+            updateSums();
+        }
+        else {
+            console.log("Load");
+            loadData();
+        }
     }
 };
 
@@ -230,7 +238,7 @@ function updateSums() {
             console.log(sumPart2[index]);
             console.log(sumPart3[index]);
         }
-        
+
     });
 }
 
@@ -259,12 +267,12 @@ window.loadData = async function () {
         const tableBody = document.getElementById('table-body');
         const querySnapshot = await getDocs(query(collection(db, 'rows'), orderBy('now')));
         isExistRowUpdate = false;
+        
+        tableBody.innerHTML = ``;
         querySnapshot.forEach((doc) => {
             const data = doc.data();
             const newRow = document.createElement('tr');
             newRow.setAttribute('data-id', doc.id);
-
-        
             newRow.innerHTML = `
             <td><input type="text" class="cell form-control" name="idPart1" value="${data.idPart1 || ''}"></td>
             <td><input type="text" class="cell form-control part2Label" name="idPart2" value="${data.idPart2 || ''}"></td>
